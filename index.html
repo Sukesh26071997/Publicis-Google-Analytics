@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <title>Form</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script type="text/javascript">
+        function validate(){
+          
+          var name = document.getElementById("name").value;
+          var email = document.getElementById("email").value;
+          var phone = document.getElementById("telphone").value;
+          var option=document.getElementsByName("gender");
+          var ddlDay = $("#day");
+          var ddlMonth = $("#month");
+          var ddlYear = $("#year");
+          var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+          var error = document.getElementById("error").value;
+          var text;
+          var error_message = document.getElementById("error");
+           error_message.style.padding = "10px";
+           if (pattern.test(name) || name.trim()== ""){
+            text = "Please Enter valid Name";
+            error_message.innerHTML = text;
+             return false;
+           }
+
+           if(email.indexOf("@") == -1 || email.trim() == ""){
+           text = "Please Enter valid Email";
+           error_message.innerHTML = text;
+           return false;
+           }
+
+           if(isNaN(phone) || phone.length != 10){ 
+          text = "Please Enter valid Phone Number";
+           error_message.innerHTML = text;
+           return false;
+            }
+
+            if (ddlDay[0].selectedIndex == 0 || ddlMonth[0].selectedIndex == 0 || ddlYear[0].selectedIndex == 0)
+          {
+            text = "Please select dob";
+           error_message.innerHTML = text;
+           return false;
+          }
+        
+            if (!(option[0].checked || option[1].checked || option[2].checked)) {
+           text = "Please select your gender";
+            error_message.innerHTML = text;
+            return false;
+           }
+        
+              return true;
+        
+    }
+        </script>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <h2>Welcome</h2>
+            <div id="error">
+            </div>
+            <form action="second.html" id="myform" onsubmit = "return validate();">
+    
+    <input type="text" id="name" placeholder="Name"><br><br>
+    <input type="text" id="email" placeholder="Email"><br><br>
+    <input type="text" id="telphone" placeholder="Mobile" pattern="[0-9]{10}" maxlength="10"><br><br>
+    <p>Please select your DOB:</p><br>
+    <select id="month">
+        <option value="Month">Month</option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+    </select>
+    <select id="day">
+        <option value="Day">Day</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">4</option>
+        <option value="5">5</option>
+    </select>
+    <select id="year">
+        <option value="Year">Year</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+    </select><br><br>
+    <p>Please select your gender:</p><br>
+    <input type="radio" id="male" name="gender" value="male">Male<br><br>
+    <input type="radio" id="female" name="gender" value="female">Female<br><br>
+    <input type="radio" id="other" name="gender" value="other">Other<br><br>
+    <input type="submit"></input>
+ 
+</div>
+
+
+
+</form>
+
+    </body>
+</html>
